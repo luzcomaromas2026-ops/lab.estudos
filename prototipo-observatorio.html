@@ -304,10 +304,61 @@
         }
 
         /* ESTUDO BADGE */
+        /* STUDY LEVELS */
+        .study-level-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .level-novico {
+            background: #F8F9FA;
+            color: #6C757D;
+            border: 1px solid #E9ECEF;
+        }
+
+        .level-aprendiz {
+            background: #E3F2FD;
+            color: #5B9FD8;
+            border: 1px solid #5B9FD8;
+        }
+
+        .level-investigador {
+            background: #E3F2FD;
+            color: #0066FF;
+            border: 1px solid #0066FF;
+        }
+
+        .level-erudito {
+            background: #E8F5E9;
+            color: #2D8659;
+            border: 1px solid #2D8659;
+        }
+
+        .level-mestre {
+            background: #FFF3E0;
+            color: #FF8C42;
+            border: 1px solid #FF8C42;
+            box-shadow: 0 2px 8px rgba(255, 140, 66, 0.15);
+        }
+
+        .motivational-message {
+            font-size: 12px;
+            font-weight: 500;
+            padding: 8px 0;
+            color: #495057;
+            margin-top: 4px;
+        }
+
         .study-badge {
             background: #F8F9FA;
             border-left: 3px solid #0066FF;
-            padding: 10px;
+            padding: 12px;
             border-radius: 4px;
             margin-top: 8px;
             font-size: 12px;
@@ -667,20 +718,19 @@
                     <div class="item-subtitle" style="color: #212529;">Começando estudo sistemático...</div>
 
                     <div class="study-badge">
-                        <div class="study-status">
+                        <div style="margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
                             <span style="font-weight: 600;">📊 Registro de Estudo</span>
-                            <span class="status-dot" style="background: #0066FF;"></span>
+                            <span class="study-level-badge level-investigador" style="font-size: 11px; padding: 4px 8px;">🔍 Investigador</span>
                         </div>
-                        <div style="color: #0066FF; font-weight: 600; margin-bottom: 6px;">Status: em_progresso</div>
                         <div class="progress-bar">
-                            <div class="progress-fill"></div>
+                            <div class="progress-fill" style="width: 65%; background: #0066FF;"></div>
                         </div>
                         <div class="progress-text">
                             <span>Memorizar 22 Arcanos</span>
                             <span>65%</span>
                         </div>
-                        <div class="study-info">⏱️ 8.5 horas investidas</div>
                         <div class="study-info">✅ 14 de 22 aprendidos</div>
+                        <div class="study-info">⏱️ 8.5 horas investidas</div>
                     </div>
                 </div>
 
@@ -697,13 +747,13 @@
                     <div class="item-subtitle" style="color: #212529;">Sempre piscina ou rio. Significa?</div>
 
                     <div class="study-badge status-concluido">
-                        <div class="study-status">
+                        <div style="margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
                             <span style="font-weight: 600;">📊 Registro de Estudo</span>
-                            <span class="status-dot" style="background: #2D8659;"></span>
+                            <span class="study-level-badge level-mestre" style="font-size: 11px; padding: 4px 8px;">⭐ Mestre</span>
                         </div>
-                        <div style="color: #2D8659; font-weight: 600; margin-bottom: 6px;">✓ Concluído</div>
+                        <div class="motivational-message" style="color: #2D8659; margin-bottom: 6px;">🎉 Você domina esse assunto!</div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 100%; background: #2D8659;"></div>
+                            <div class="progress-fill" style="width: 100%; background: #FF8C42;"></div>
                         </div>
                         <div class="progress-text">
                             <span>Explorar simbolismo da água</span>
@@ -720,13 +770,13 @@
                     <div class="item-subtitle" style="color: #212529;">Purple em diferentes culturas...</div>
 
                     <div class="study-badge status-pendente">
-                        <div class="study-status">
+                        <div style="margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
                             <span style="font-weight: 600;">📊 Registro de Estudo</span>
-                            <span class="status-dot" style="background: #A8ACB1;"></span>
+                            <span class="study-level-badge level-novico" style="font-size: 11px; padding: 4px 8px;">🌱 Noviço</span>
                         </div>
-                        <div style="color: #6C757D; font-weight: 600; margin-bottom: 6px;">⚪ Pendente</div>
+                        <div class="motivational-message">Você está começando essa jornada!</div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%; background: #A8ACB1;"></div>
+                            <div class="progress-fill" style="width: 0%; background: #E9ECEF;"></div>
                         </div>
                         <div class="progress-text">
                             <span>Pesquisar roxo em 5 culturas</span>
@@ -906,13 +956,14 @@
                 </div>
 
                 <div class="modal-section">
-                    <div class="modal-label">Status</div>
-                    <div class="study-status" style="margin-bottom: 8px;">
-                        <span class="status-dot" style="background: #0066FF;"></span>
-                        <span style="font-weight: 600; color: #0066FF;">em_progresso</span>
+                    <div class="study-level-badge level-investigador study-level-display">
+                        🔍 Investigador (65%)
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
+                    <div class="motivational-message motivational-text">
+                        Progredindo bem! Vai longe.
+                    </div>
+                    <div class="progress-bar study-modal-progress">
+                        <div class="progress-fill" style="width: 65%; background: #0066FF;"></div>
                     </div>
                     <div class="progress-text">
                         <span>14 de 22 Arcanos</span>
@@ -957,6 +1008,28 @@
     </div>
 
     <script>
+        // Study Level System
+        const studyLevels = {
+            0: { emoji: '🌱', name: 'Noviço', color: '#E9ECEF', textColor: '#6C757D', min: 0, max: 20, message: 'Você está começando esta jornada!' },
+            1: { emoji: '📚', name: 'Aprendiz', color: '#5B9FD8', textColor: '#5B9FD8', min: 21, max: 40, message: 'Pegando ritmo! Continue assim.' },
+            2: { emoji: '🔍', name: 'Investigador', color: '#0066FF', textColor: '#0066FF', min: 41, max: 60, message: 'Progredindo bem! Vai longe.' },
+            3: { emoji: '🎓', name: 'Erudito', color: '#2D8659', textColor: '#2D8659', min: 61, max: 80, message: 'Quase lá! Falta pouco para dominar.' },
+            4: { emoji: '⭐', name: 'Mestre', color: '#FF8C42', textColor: '#FF8C42', min: 81, max: 100, message: '🎉 VOCÊ DOMINA ISSO!' }
+        };
+
+        function getStudyLevel(percentage) {
+            for (let i = 0; i < Object.keys(studyLevels).length; i++) {
+                const level = studyLevels[i];
+                if (percentage >= level.min && percentage <= level.max) return i;
+            }
+            return 4; // Mestre
+        }
+
+        function getLevelBadgeClass(levelIndex) {
+            const classMap = ['level-novico', 'level-aprendiz', 'level-investigador', 'level-erudito', 'level-mestre'];
+            return classMap[levelIndex] || 'level-novico';
+        }
+
         // Navigation
         const sections = document.querySelectorAll('.section-content');
         const tabs = document.querySelectorAll('.tab-btn');
@@ -999,6 +1072,30 @@
         }
 
         function showStudyRecord() {
+            // Update modal with study level
+            const percentage = 65; // Exemplo: 65%
+            const levelIndex = getStudyLevel(percentage);
+            const level = studyLevels[levelIndex];
+
+            // Atualizar badge de nível
+            const levelBadge = document.querySelector('.study-level-display');
+            if (levelBadge) {
+                levelBadge.className = `study-level-badge ${getLevelBadgeClass(levelIndex)}`;
+                levelBadge.innerHTML = `${level.emoji} ${level.name} (${percentage}%)`;
+            }
+
+            // Atualizar mensagem motivadora
+            const motivation = document.querySelector('.motivational-text');
+            if (motivation) {
+                motivation.textContent = level.message;
+            }
+
+            // Atualizar cor do progress bar
+            const progressFill = document.querySelector('.study-modal-progress .progress-fill');
+            if (progressFill) {
+                progressFill.style.background = level.color;
+            }
+
             studyModal.classList.add('active');
         }
 
