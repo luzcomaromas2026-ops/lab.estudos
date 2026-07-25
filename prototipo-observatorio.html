@@ -529,11 +529,13 @@
                         <div class="persona-name">
                             <div>👥 O Pesquisador</div>
                         </div>
+                        <span style="display: none;">✓</span>
                     </div>
                     <div class="persona-item" data-persona="ana">
                         <div class="persona-name">
                             <div>🎨 O Artista</div>
                         </div>
+                        <span style="display: none;">✓</span>
                     </div>
                 </div>
             </div>
@@ -1069,9 +1071,18 @@
             item.addEventListener('click', () => {
                 currentPersona = item.dataset.persona;
 
-                // Update menu
-                personaItems.forEach(p => p.classList.remove('active'));
+                // Update menu - remove all checkmarks
+                personaItems.forEach(p => {
+                    p.classList.remove('active');
+                    const checkmark = p.querySelector('span');
+                    if (checkmark) checkmark.style.display = 'none';
+                });
+
+                // Add checkmark and active to clicked item
                 item.classList.add('active');
+                const checkmark = item.querySelector('span');
+                if (checkmark) checkmark.style.display = 'inline';
+
                 personaMenu.classList.remove('active');
 
                 // Update UI with persona
