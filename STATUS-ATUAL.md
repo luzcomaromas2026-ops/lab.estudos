@@ -43,7 +43,7 @@
 
 ### Regras do Projeto
 ✅ **.cursorrules** — Regras para Cursor IDE (mobile, grafo, LGPD)
-✅ **.claude/CLAUDE.md** — Instruções para Claude Code (visão, fases, riscos)
+✅ **[docs/CLAUDE.md](docs/CLAUDE.md)** — Instruções para Claude Code (visão, fases, riscos)
 ✅ **.claude/settings.json** — Setup de permissões
 
 ### Framework GPS Completo

@@ -8,11 +8,11 @@
 
 ## 📜 Documentos Fundamentais
 
-### **MANIFESTO.md** — Por que existe
+### **[docs/00-Manifesto.md](docs/00-Manifesto.md)** — Por que existe
 Propósito, missão, visão, valores, o que é/não é, público-alvo, princípios, limites éticos.
 **Impede que o projeto perca sua identidade.**
 
-### **ONTOLOGIA.md** — Como funciona (O CORAÇÃO)
+### **[docs/07-Ontologia.md](docs/07-Ontologia.md)** — Como funciona (O CORAÇÃO)
 Define a estrutura de dados fundamental que torna possível o Mapa de Conexões.
 - É um → Tipos de símbolos
 - Representa → Significados
@@ -177,4 +177,4 @@ Contém:
 
 ---
 
-Para Cursor/Claude: leia `.claude/CLAUDE.md` e `.cursorrules`
+Para Cursor/Claude: leia [`docs/CLAUDE.md`](docs/CLAUDE.md) e `.cursorrules`

@@ -8,16 +8,16 @@
 
 **Antes de qualquer trabalho neste projeto:**
 
-1. [`docs/01-Visao-Produto.md`](docs/01-Visao-Produto.md) — O que é o projeto
-2. [`docs/00-Manifesto.md`](docs/00-Manifesto.md) — Por que existe
-3. [`ONTOLOGIA.md`](ONTOLOGIA.md) — Como funciona (CORE!)
+1. [`docs/01-Visao-Produto.md`](01-Visao-Produto.md) — O que é o projeto
+2. [`docs/00-Manifesto.md`](00-Manifesto.md) — Por que existe
+3. [`docs/07-Ontologia.md`](07-Ontologia.md) — Como funciona (CORE!)
 
 **Depois, conforme necessário:**
-- [`docs/02-PRD.md`](docs/02-PRD.md) — Requisitos funcionais
-- [`docs/03-Arquitetura.md`](docs/03-Arquitetura.md) — Decisões técnicas
-- [`docs/05-Design-System.md`](docs/05-Design-System.md) — Visual + componentes
-- [`docs/10-Seguranca.md`](docs/10-Seguranca.md) — LGPD + auth
-- [`docs/12-Glossario.md`](docs/12-Glossario.md) — Termos
+- [`02-PRD.md`](02-PRD.md) — Requisitos funcionais
+- [`03-Arquitetura.md`](03-Arquitetura.md) — Decisões técnicas
+- [`05-Design-System.md`](05-Design-System.md) — Visual + componentes
+- [`10-Seguranca.md`](10-Seguranca.md) — LGPD + auth
+- [`12-Glossario.md`](12-Glossario.md) — Termos
 
 ---
 
@@ -261,18 +261,18 @@ Não é objetivo:
 ## 🔗 Links Críticos
 
 ```
-📋 INDEX: docs/INDEX.md (navegação de docs)
-👁️ Visão: docs/01-Visao-Produto.md
-📖 Manifesto: docs/00-Manifesto.md
-🧬 Ontologia: ONTOLOGIA.md
-🏗️ Arquitetura: docs/03-Arquitetura.md
-🎨 Design: docs/05-Design-System.md
-🗄️ DB: docs/06-Banco-de-Dados.md
-🔌 API: docs/09-API.md
-🔒 Segurança: docs/10-Seguranca.md
-🎯 Roadmap: docs/11-Roadmap.md
-📚 Glossário: docs/12-Glossario.md
-🤝 Contribuição: docs/13-Contribuicao.md
+📋 INDEX: INDEX.md (navegação de docs)
+👁️ Visão: 01-Visao-Produto.md
+📖 Manifesto: 00-Manifesto.md
+🧬 Ontologia: 07-Ontologia.md
+🏗️ Arquitetura: 03-Arquitetura.md
+🎨 Design: 05-Design-System.md
+🗄️ DB: 06-Banco-de-Dados.md
+🔌 API: 09-API.md
+🔒 Segurança: 10-Seguranca.md
+🎯 Roadmap: 11-Roadmap.md
+📚 Glossário: 12-Glossario.md
+🤝 Contribuição: 13-Contribuicao.md
 ```
 
 ---
@@ -303,7 +303,7 @@ Tech Lead
 ❓ Decisões de tech stack: Pergunte ao Tech Lead
 ❓ Design system: Pergunte ao Designer
 ❓ Segurança: Pergunte ao Daany + Tech Lead
-❓ Dúvida em ontologia: Leia ONTOLOGIA.md + Manifesto
+❓ Dúvida em ontologia: Leia 07-Ontologia.md + 00-Manifesto.md
 ```
 
 ---
