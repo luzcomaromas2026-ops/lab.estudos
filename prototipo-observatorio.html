@@ -311,6 +311,17 @@
             border-radius: 4px;
             margin-top: 8px;
             font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .study-badge.status-concluido {
+            background: #E8F5E9;
+            border-left-color: #2D8659;
+        }
+
+        .study-badge.status-pendente {
+            background: #F5F5F5;
+            border-left-color: #A8ACB1;
         }
 
         .study-status {
@@ -683,12 +694,12 @@
                     <div class="item-subtitle">28/07/2026</div>
                     <div class="item-subtitle" style="color: #212529;">Sempre piscina ou rio. Significa?</div>
 
-                    <div class="study-badge">
+                    <div class="study-badge status-concluido">
                         <div class="study-status">
                             <span style="font-weight: 600;">📊 Registro de Estudo</span>
                             <span class="status-dot" style="background: #2D8659;"></span>
                         </div>
-                        <div style="color: #2D8659; font-weight: 600; margin-bottom: 6px;">Status: concluído ✓</div>
+                        <div style="color: #2D8659; font-weight: 600; margin-bottom: 6px;">✓ Concluído</div>
                         <div class="progress-bar">
                             <div class="progress-fill" style="width: 100%; background: #2D8659;"></div>
                         </div>
@@ -706,12 +717,12 @@
                     <div class="item-subtitle">15/07/2026</div>
                     <div class="item-subtitle" style="color: #212529;">Purple em diferentes culturas...</div>
 
-                    <div class="study-badge">
+                    <div class="study-badge status-pendente">
                         <div class="study-status">
                             <span style="font-weight: 600;">📊 Registro de Estudo</span>
                             <span class="status-dot" style="background: #A8ACB1;"></span>
                         </div>
-                        <div style="color: #6C757D; font-weight: 600; margin-bottom: 6px;">Status: pendente</div>
+                        <div style="color: #6C757D; font-weight: 600; margin-bottom: 6px;">⚪ Pendente</div>
                         <div class="progress-bar">
                             <div class="progress-fill" style="width: 0%; background: #A8ACB1;"></div>
                         </div>
@@ -871,12 +882,12 @@
 
         <!-- BOTTOM TABS -->
         <div class="bottom-tabs">
-            <button class="tab-btn active" data-section="home">⭕</button>
-            <button class="tab-btn" data-section="biblioteca">📚</button>
-            <button class="tab-btn" data-section="grimorio">📜</button>
-            <button class="tab-btn" data-section="fichas">🔍</button>
-            <button class="tab-btn" data-section="mapa">🕸️</button>
-            <button class="tab-btn" data-section="diario">🧪</button>
+            <button class="tab-btn active" data-section="home" title="Observatório">⭕</button>
+            <button class="tab-btn" data-section="biblioteca" title="Biblioteca">📚</button>
+            <button class="tab-btn" data-section="grimorio" title="Grimórios">📜</button>
+            <button class="tab-btn" data-section="fichas" title="Fichas">🔍</button>
+            <button class="tab-btn" data-section="mapa" title="Mapa">🕸️</button>
+            <button class="tab-btn" data-section="diario" title="Diário">🧪</button>
         </div>
 
         <!-- MODAL: STUDY RECORD -->
