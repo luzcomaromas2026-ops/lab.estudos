@@ -41,52 +41,6 @@
             font-weight: 600;
         }
 
-        .header-right {
-            font-size: 20px;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .persona-menu {
-            display: none;
-            position: absolute;
-            top: 40px;
-            right: 0;
-            background: #FFFFFF;
-            border: 1px solid #E9ECEF;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 1001;
-            min-width: 200px;
-        }
-
-        .persona-menu.active {
-            display: block;
-        }
-
-        .persona-item {
-            padding: 12px 16px;
-            border-bottom: 1px solid #E9ECEF;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: background 0.2s;
-        }
-
-        .persona-item:hover {
-            background: #F8F9FA;
-        }
-
-        .persona-item:last-child {
-            border-bottom: none;
-        }
-
-        .persona-item.active {
-            background: #E3F2FD;
-            color: #0066FF;
-            font-weight: 600;
-        }
 
         /* MAIN CONTENT */
         .main {
@@ -447,14 +401,6 @@
         <!-- HEADER -->
         <div class="header">
             <div class="header-title">Laboratório</div>
-            <div class="header-right" onclick="togglePersonaMenu()">
-                ⚙️
-                <div class="persona-menu" id="personaMenu">
-                    <div class="persona-item active" data-persona="joao">👤 O Iniciante ✓</div>
-                    <div class="persona-item" data-persona="mari">👥 O Pesquisador</div>
-                    <div class="persona-item" data-persona="ana">🎨 O Artista</div>
-                </div>
-            </div>
         </div>
 
         <!-- MAIN CONTENT -->
@@ -707,8 +653,6 @@
         const sections = document.querySelectorAll('.section');
         const tabs = document.querySelectorAll('.tab-btn');
         const constellations = document.querySelectorAll('.constellation');
-        const personaItems = document.querySelectorAll('.persona-item');
-        const personaMenu = document.getElementById('personaMenu');
         const studyModal = document.getElementById('studyModal');
 
         const levels = [
@@ -741,10 +685,6 @@
             constellations[0].classList.add('active');
         }
 
-        function togglePersonaMenu() {
-            personaMenu.classList.toggle('active');
-        }
-
         function showStudyRecord(percentage, levelName, emoji) {
             const levelIndex = Math.floor(percentage / 21);
             const level = levels[levelIndex];
@@ -760,20 +700,6 @@
         function closeModal() {
             studyModal.classList.remove('active');
         }
-
-        personaItems.forEach(item => {
-            item.addEventListener('click', () => {
-                personaItems.forEach(p => p.classList.remove('active'));
-                item.classList.add('active');
-                personaMenu.classList.remove('active');
-            });
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.header-right')) {
-                personaMenu.classList.remove('active');
-            }
-        });
 
         studyModal.addEventListener('click', (e) => {
             if (e.target === studyModal) closeModal();
