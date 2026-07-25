@@ -1,0 +1,16 @@
+﻿{
+  "permissions": [
+    {
+      "name": "read",
+      "description": "Read files in the project"
+    },
+    {
+      "name": "write",
+      "description": "Write and edit files"
+    },
+    {
+      "name": "bash",
+      "description": "Run shell commands"
+    }
+  ]
+}
