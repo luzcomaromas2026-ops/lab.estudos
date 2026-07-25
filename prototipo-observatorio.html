@@ -1103,39 +1103,21 @@
         // Initialize persona UI
         updatePersonaUI();
 
-        // Search Functionality
+        // Search Functionality (simples)
         const searchBoxes = document.querySelectorAll('.search-box');
-
         searchBoxes.forEach(box => {
             box.addEventListener('input', (e) => {
-                const query = e.target.value.toLowerCase();
+                const query = e.target.value.toLowerCase().trim();
+                if (!query) return;
+
                 const section = e.target.closest('.section-content');
+                if (!section) return;
+
                 const cards = section.querySelectorAll('.item-card');
-
                 cards.forEach(card => {
-                    const title = card.querySelector('.item-title').textContent.toLowerCase();
-                    const subtitle = card.querySelector('.item-subtitle').textContent.toLowerCase();
-
-                    if (title.includes(query) || subtitle.includes(query)) {
-                        card.style.display = 'block';
-                        card.style.animation = 'fadeIn 0.2s ease-out';
-                    } else {
-                        card.style.display = 'none';
-                    }
+                    const text = card.textContent.toLowerCase();
+                    card.style.display = text.includes(query) ? 'block' : 'none';
                 });
-
-                // Show "no results" if all cards hidden
-                const visibleCards = Array.from(cards).filter(c => c.style.display !== 'none');
-                const existingMessage = section.querySelector('.no-results');
-                if (existingMessage) existingMessage.remove();
-
-                if (visibleCards.length === 0 && query.length > 0) {
-                    const message = document.createElement('div');
-                    message.className = 'no-results';
-                    message.style.cssText = 'text-align: center; color: #6C757D; padding: 20px; font-size: 14px;';
-                    message.textContent = 'Nenhum resultado encontrado';
-                    e.target.parentNode.appendChild(message);
-                }
             });
         });
     </script>
