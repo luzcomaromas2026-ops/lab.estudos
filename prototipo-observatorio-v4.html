@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratório de Simbologia — Observatório</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #F3F4F6;
+            color: #212529;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* HEADER */
+        .header {
+            background: #FFFFFF;
+            border-bottom: 1px solid #E9ECEF;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .header-right {
+            font-size: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .persona-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background: #FFFFFF;
+            border: 1px solid #E9ECEF;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1001;
+            min-width: 200px;
+        }
+
+        .persona-menu.active {
+            display: block;
+        }
+
+        .persona-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #E9ECEF;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+
+        .persona-item:hover {
+            background: #F8F9FA;
+        }
+
+        .persona-item:last-child {
+            border-bottom: none;
+        }
+
+        .persona-item.active {
+            background: #E3F2FD;
+            color: #0066FF;
+            font-weight: 600;
+        }
+
+        /* MAIN CONTENT */
+        .main {
+            flex: 1;
+            padding: 24px 16px;
+            overflow-y: auto;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* HOME */
+        .home-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .home-title h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .home-title p {
+            color: #495057;
+            font-size: 14px;
+        }
+
+        .observatorio {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+            justify-items: center;
+        }
+
+        .constellation {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .constellation:hover {
+            transform: scale(1.05);
+        }
+
+        .constellation-icon {
+            font-size: 40px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #F8F9FA;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .constellation.active .constellation-icon {
+            border-color: #0066FF;
+            background: #E3F2FD;
+        }
+
+        .constellation-label {
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* CONTENT SECTIONS */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #495057;
+        }
+
+        .btn-new {
+            background: #0066FF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-new:hover {
+            background: #0052CC;
+        }
+
+        /* CARDS */
+        .card {
+            background: #FFFFFF;
+            border: 1px solid #E9ECEF;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-color: #D0D0D0;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .card-subtitle {
+            font-size: 12px;
+            color: #495057;
+            margin-bottom: 8px;
+        }
+
+        .card-text {
+            font-size: 13px;
+            color: #212529;
+            margin-bottom: 12px;
+        }
+
+        /* STUDY LEVELS */
+        .level-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .level-0 {
+            background: #F8F9FA;
+            color: #6C757D;
+            border: 1px solid #E9ECEF;
+        }
+
+        .level-1 {
+            background: #E3F2FD;
+            color: #5B9FD8;
+            border: 1px solid #5B9FD8;
+        }
+
+        .level-2 {
+            background: #E3F2FD;
+            color: #0066FF;
+            border: 1px solid #0066FF;
+        }
+
+        .level-3 {
+            background: #E8F5E9;
+            color: #2D8659;
+            border: 1px solid #2D8659;
+        }
+
+        .level-4 {
+            background: #FFF3E0;
+            color: #FF8C42;
+            border: 1px solid #FF8C42;
+        }
+
+        .motivational {
+            font-size: 12px;
+            color: #495057;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #E9ECEF;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            transition: width 0.3s ease-out;
+        }
+
+        .progress-text {
+            font-size: 12px;
+            color: #6C757D;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .study-info {
+            font-size: 11px;
+            color: #495057;
+            margin-top: 6px;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 2000;
+            align-items: flex-end;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #FFFFFF;
+            width: 100%;
+            border-radius: 12px 12px 0 0;
+            padding: 24px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideUp 0.2s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #E9ECEF;
+        }
+
+        .modal-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #495057;
+        }
+
+        .modal-section {
+            margin-bottom: 16px;
+        }
+
+        .modal-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #6C757D;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .modal-value {
+            font-size: 14px;
+            color: #212529;
+        }
+
+        /* TAGS */
+        .tags {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #F8F9FA;
+            color: #495057;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+
+        /* BOTTOM TABS */
+        .tabs {
+            background: #FFFFFF;
+            border-top: 1px solid #E9ECEF;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            position: sticky;
+            bottom: 0;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #A8ACB1;
+            transition: all 0.2s;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tab-btn.active {
+            color: #0066FF;
+            font-size: 22px;
+        }
+
+        @media (max-width: 480px) {
+            .observatorio {
+                gap: 16px;
+            }
+
+            .constellation-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-title">Laboratório</div>
+            <div class="header-right" onclick="togglePersonaMenu()">
+                ⚙️
+                <div class="persona-menu" id="personaMenu">
+                    <div class="persona-item active" data-persona="joao">👤 O Iniciante ✓</div>
+                    <div class="persona-item" data-persona="mari">👥 O Pesquisador</div>
+                    <div class="persona-item" data-persona="ana">🎨 O Artista</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main">
+            <!-- HOME -->
+            <div class="section active" id="home">
+                <div class="home-title">
+                    <h1>Bem-vindo!</h1>
+                    <p>Escolha uma constelação</p>
+                </div>
+
+                <div class="observatorio">
+                    <div class="constellation active" onclick="goTo('biblioteca')">
+                        <div class="constellation-icon">📚</div>
+                        <div class="constellation-label">Biblioteca</div>
+                    </div>
+                    <div class="constellation" onclick="goTo('grimorio')">
+                        <div class="constellation-icon">📜</div>
+                        <div class="constellation-label">Grimórios</div>
+                    </div>
+                    <div class="constellation" onclick="goTo('fichas')">
+                        <div class="constellation-icon">🔍</div>
+                        <div class="constellation-label">Fichas</div>
+                    </div>
+                    <div class="constellation" onclick="goTo('mapa')">
+                        <div class="constellation-icon">🕸️</div>
+                        <div class="constellation-label">Mapa</div>
+                    </div>
+                    <div class="constellation" onclick="goTo('diario')">
+                        <div class="constellation-icon">🧪</div>
+                        <div class="constellation-label">Diário</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BIBLIOTECA -->
+            <div class="section" id="biblioteca">
+                <div class="section-header">
+                    <button class="btn-back" onclick="goHome()">← Biblioteca</button>
+                    <button class="btn-new">+ Novo</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">The Rider-Waite Tarot</div>
+                    <div class="card-subtitle">Arthur Waite & Pam Colman (1909)</div>
+                    <div class="tags">
+                        <span class="tag">Tarô</span>
+                        <span class="tag">Clássico</span>
+                        <span class="tag">⭐⭐⭐⭐⭐</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Man and His Symbols</div>
+                    <div class="card-subtitle">Carl Jung (1964)</div>
+                    <div class="tags">
+                        <span class="tag">Arquétipos</span>
+                        <span class="tag">Psicologia</span>
+                        <span class="tag">⭐⭐⭐⭐⭐</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GRIMÓRIOS -->
+            <div class="section" id="grimorio">
+                <div class="section-header">
+                    <button class="btn-back" onclick="goHome()">← Grimórios</button>
+                    <button class="btn-new">+ Nova</button>
+                </div>
+
+                <div class="card" onclick="showStudyRecord(65, 'Investigador', '🔍')">
+                    <div class="card-title">✍️ Os Arcanos Maiores</div>
+                    <div class="card-subtitle">25/07/2026</div>
+                    <div class="card-text">Começando estudo sistemático...</div>
+
+                    <div class="level-badge level-2">🔍 Investigador (65%)</div>
+                    <div class="motivational">Progredindo bem! Vai longe.</div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 65%; background: #0066FF;"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span>14 de 22 aprendidos</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="study-info">⏱️ 8.5 horas investidas</div>
+                </div>
+
+                <div class="card" onclick="showStudyRecord(100, 'Mestre', '⭐')">
+                    <div class="card-title">✍️ Sonho recorrente da água</div>
+                    <div class="card-subtitle">28/07/2026</div>
+                    <div class="card-text">Sempre piscina ou rio. Compreendi!</div>
+
+                    <div class="level-badge level-4">⭐ Mestre (100%)</div>
+                    <div class="motivational">🎉 Você domina esse assunto!</div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%; background: #FF8C42;"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span>Simbolismo da água</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="study-info">⏱️ 3 horas investidas</div>
+                </div>
+
+                <div class="card" onclick="showStudyRecord(0, 'Noviço', '🌱')">
+                    <div class="card-title">✍️ Estudo de roxo</div>
+                    <div class="card-subtitle">15/07/2026</div>
+                    <div class="card-text">Purple em diferentes culturas...</div>
+
+                    <div class="level-badge level-0">🌱 Noviço (0%)</div>
+                    <div class="motivational">Você está começando essa jornada!</div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%; background: #E9ECEF;"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span>Pesquisar roxo</span>
+                        <span>0%</span>
+                    </div>
+                    <div class="study-info">⏱️ 0 horas investidas</div>
+                </div>
+            </div>
+
+            <!-- FICHAS -->
+            <div class="section" id="fichas">
+                <div class="section-header">
+                    <button class="btn-back" onclick="goHome()">← Fichas de Pesquisa</button>
+                    <button class="btn-new">+ Nova</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">🌙 Lua</div>
+                    <div class="card-subtitle">Divindade | Elemento | Arquétipo</div>
+                    <div class="tags">
+                        <span class="tag">Mitologia</span>
+                        <span class="tag">Psicologia</span>
+                        <span class="tag">Tarô</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">🦉 Coruja</div>
+                    <div class="card-subtitle">Animal | Divindade</div>
+                    <div class="tags">
+                        <span class="tag">Sabedoria</span>
+                        <span class="tag">Atena</span>
+                        <span class="tag">Noite</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAPA -->
+            <div class="section" id="mapa">
+                <div class="section-header">
+                    <button class="btn-back" onclick="goHome()">← Mapa de Conexões</button>
+                </div>
+                <div style="text-align: center; padding: 40px 20px; color: #495057;">
+                    <div style="font-size: 40px; margin-bottom: 16px;">🕸️</div>
+                    <div style="font-size: 14px;">
+                        <strong>Grafo visual de conexões</strong><br>
+                        <span style="font-size: 12px; color: #6C757D;">Implementação em Fase 05</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIÁRIO -->
+            <div class="section" id="diario">
+                <div class="section-header">
+                    <button class="btn-back" onclick="goHome()">← Diário do Laboratório</button>
+                    <button class="btn-new">+ Nova</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">28/07/2026</div>
+                    <div class="card-text">"Descoberta: Lua aparece em A Sacerdotisa! Ambas = conhecimento oculto."</div>
+                    <div class="tags">
+                        <span class="tag">#sincronicidade</span>
+                        <span class="tag">#conexões</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">25/07/2026</div>
+                    <div class="card-text">"Comecei Tarô. 14 Arcanos memorizado! Progresso incrível."</div>
+                    <div class="tags">
+                        <span class="tag">#estudo</span>
+                        <span class="tag">#progresso</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM TABS -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="goHome()" title="Home">⭕</button>
+            <button class="tab-btn" onclick="goTo('biblioteca')" title="Biblioteca">📚</button>
+            <button class="tab-btn" onclick="goTo('grimorio')" title="Grimórios">📜</button>
+            <button class="tab-btn" onclick="goTo('fichas')" title="Fichas">🔍</button>
+            <button class="tab-btn" onclick="goTo('mapa')" title="Mapa">🕸️</button>
+            <button class="tab-btn" onclick="goTo('diario')" title="Diário">🧪</button>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal" id="studyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">📊 Registro de Estudo</h3>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+
+            <div class="modal-section">
+                <div class="level-badge" id="modalLevel" style="font-size: 13px; padding: 8px 12px;">
+                    🔍 Investigador (65%)
+                </div>
+                <div class="motivational" id="modalMotivation">Progredindo bem! Vai longe.</div>
+            </div>
+
+            <div class="modal-section">
+                <div class="modal-label">Objetivo</div>
+                <div class="modal-value">Memorizar os 22 Arcanos Maiores</div>
+            </div>
+
+            <div class="modal-section">
+                <div class="modal-label">Progresso</div>
+                <div class="progress-bar" id="modalProgress">
+                    <div class="progress-fill" style="width: 65%; background: #0066FF;"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="modalProgressText">14 de 22</span>
+                    <span id="modalProgressPercent">65%</span>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <div class="modal-label">Iniciado</div>
+                <div class="modal-value">25/07/2026</div>
+            </div>
+
+            <div class="modal-section">
+                <div class="modal-label">Horas Investidas</div>
+                <div class="modal-value" id="modalHours">8.5 horas</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll('.section');
+        const tabs = document.querySelectorAll('.tab-btn');
+        const constellations = document.querySelectorAll('.constellation');
+        const personaItems = document.querySelectorAll('.persona-item');
+        const personaMenu = document.getElementById('personaMenu');
+        const studyModal = document.getElementById('studyModal');
+
+        const levels = [
+            { emoji: '🌱', name: 'Noviço', msg: 'Você está começando essa jornada!' },
+            { emoji: '📚', name: 'Aprendiz', msg: 'Pegando ritmo! Continue assim.' },
+            { emoji: '🔍', name: 'Investigador', msg: 'Progredindo bem! Vai longe.' },
+            { emoji: '🎓', name: 'Erudito', msg: 'Quase lá! Falta pouco para dominar.' },
+            { emoji: '⭐', name: 'Mestre', msg: '🎉 Você domina isso!' }
+        ];
+
+        const levelColors = ['#E9ECEF', '#5B9FD8', '#0066FF', '#2D8659', '#FF8C42'];
+
+        function goTo(section) {
+            sections.forEach(s => s.classList.remove('active'));
+            tabs.forEach(t => t.classList.remove('active'));
+            constellations.forEach(c => c.classList.remove('active'));
+
+            document.getElementById(section).classList.add('active');
+            const tab = Array.from(tabs).find(t => t.textContent === document.querySelector(`[onclick="goTo('${section}')"]`).textContent);
+            if (tab) tab.classList.add('active');
+        }
+
+        function goHome() {
+            sections.forEach(s => s.classList.remove('active'));
+            tabs.forEach(t => t.classList.remove('active'));
+            constellations.forEach(c => c.classList.remove('active'));
+
+            document.getElementById('home').classList.add('active');
+            tabs[0].classList.add('active');
+            constellations[0].classList.add('active');
+        }
+
+        function togglePersonaMenu() {
+            personaMenu.classList.toggle('active');
+        }
+
+        function showStudyRecord(percentage, levelName, emoji) {
+            const levelIndex = Math.floor(percentage / 21);
+            const level = levels[levelIndex];
+
+            document.getElementById('modalLevel').textContent = `${emoji} ${level.name} (${percentage}%)`;
+            document.getElementById('modalMotivation').textContent = level.msg;
+            document.getElementById('modalProgress').innerHTML = `<div class="progress-fill" style="width: ${percentage}%; background: ${levelColors[levelIndex]};"></div>`;
+            document.getElementById('modalProgressPercent').textContent = `${percentage}%`;
+
+            studyModal.classList.add('active');
+        }
+
+        function closeModal() {
+            studyModal.classList.remove('active');
+        }
+
+        personaItems.forEach(item => {
+            item.addEventListener('click', () => {
+                personaItems.forEach(p => p.classList.remove('active'));
+                item.classList.add('active');
+                personaMenu.classList.remove('active');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.header-right')) {
+                personaMenu.classList.remove('active');
+            }
+        });
+
+        studyModal.addEventListener('click', (e) => {
+            if (e.target === studyModal) closeModal();
+        });
+    </script>
+</body>
+</html>
